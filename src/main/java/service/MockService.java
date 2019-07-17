@@ -23,11 +23,19 @@ public class MockService {
 
     public ConvenienceStoreItem updateCategoryByName(String name, String category) {
         ConvenienceStoreItem convenienceStoreItem = findByName(name);
-        convenienceStoreItem.setName(category);
+        convenienceStoreItem.setCategory(category);
 
         return convenienceStoreItem;
     }
 
+    public ConvenienceStoreItem updatePriceByName(String name, int price) {
+        ConvenienceStoreItem convenienceStoreItem = findByName(name);
+        convenienceStoreItem.setPrice(price);
+
+        return convenienceStoreItem;
+    }
+
+    //한꺼번에 이름,카테고리,가격 다 입력하기
     public void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem){
         ConvenienceStoreItem addConvenienceStoreItem = new ConvenienceStoreItem(convenienceStoreItem.getName(), convenienceStoreItem.getCategory(), convenienceStoreItem.getPrice());
         mockRepository.addConvenienceStoreItem(addConvenienceStoreItem);
