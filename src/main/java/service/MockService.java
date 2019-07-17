@@ -12,7 +12,7 @@ public class MockService {
         this.mockRepository = mockRepository;
     }
 
-    public List<ConvenienceStoreItem> findAllConvinientStore() {
+    public List<ConvenienceStoreItem> findAllConvinienceStoreItem() {
         return mockRepository.findAll();
     }
 
