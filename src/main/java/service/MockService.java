@@ -28,9 +28,9 @@ public class MockService {
         return convenienceStoreItem;
     }
 
-    public void addConvinientStore(ConvenienceStoreItem convenienceStoreItem){
+    public void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem){
         ConvenienceStoreItem addConvenienceStoreItem = new ConvenienceStoreItem(convenienceStoreItem.getName(), convenienceStoreItem.getCategory(), convenienceStoreItem.getPrice());
-        mockRepository.addConvenientStore(addConvenienceStoreItem);
+        mockRepository.addConvenienceStoreItem(addConvenienceStoreItem);
         return;
     }
 }

@@ -11,5 +11,5 @@ public interface MockRepository {
 
     ConvenienceStoreItem updateCategoryByName(String name, String category);
 
-    void addConvenientStore(ConvenienceStoreItem convenienceStoreItem);
+    void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem);
 }
