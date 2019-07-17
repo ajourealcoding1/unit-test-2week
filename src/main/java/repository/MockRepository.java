@@ -1,15 +1,15 @@
 package repository;
 
-import domain.Champion;
+import domain.ConvenienceStoreItem;
 
 import java.util.List;
 
 public interface MockRepository {
-    List<Champion> findAll();
+    List<ConvenienceStoreItem> findAll();
 
-    Champion findByName(String name);
+    ConvenienceStoreItem findByName(String name);
 
-    Champion updatePositionByName(String name, String position);
+    ConvenienceStoreItem updateCategoryByName(String name, String category);
 
-    void addChampion(Champion champion);
+    void addConvenientStore(ConvenienceStoreItem convenienceStoreItem);
 }

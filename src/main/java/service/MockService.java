@@ -1,6 +1,6 @@
 package service;
 
-import domain.Champion;
+import domain.ConvenienceStoreItem;
 import repository.MockRepository;
 
 import java.util.List;
@@ -12,25 +12,25 @@ public class MockService {
         this.mockRepository = mockRepository;
     }
 
-    public List<Champion> findAllChampions() {
+    public List<ConvenienceStoreItem> findAllConvinientStore() {
         return mockRepository.findAll();
     }
 
-    public Champion findByName(String name) {
-        Champion champion = mockRepository.findByName(name);
-        return champion;
+    public ConvenienceStoreItem findByName(String name) {
+        ConvenienceStoreItem convenienceStoreItem = mockRepository.findByName(name);
+        return convenienceStoreItem;
     }
 
-    public Champion updatePositionByName(String name, String position) {
-        Champion champion = findByName(name);
-        champion.setName(position);
+    public ConvenienceStoreItem updateCategoryByName(String name, String category) {
+        ConvenienceStoreItem convenienceStoreItem = findByName(name);
+        convenienceStoreItem.setName(category);
 
-        return champion;
+        return convenienceStoreItem;
     }
 
-    public void addChampion(Champion champion){
-        Champion addChampion = new Champion(champion.getName(), champion.getPosition(), champion.getHasSkinCount());
-        mockRepository.addChampion(addChampion);
+    public void addConvinientStore(ConvenienceStoreItem convenienceStoreItem){
+        ConvenienceStoreItem addConvenienceStoreItem = new ConvenienceStoreItem(convenienceStoreItem.getName(), convenienceStoreItem.getCategory(), convenienceStoreItem.getPrice());
+        mockRepository.addConvenientStore(addConvenienceStoreItem);
         return;
     }
 }

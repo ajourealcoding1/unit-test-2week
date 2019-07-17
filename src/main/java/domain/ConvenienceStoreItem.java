@@ -5,8 +5,8 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class Champion {
+public class ConvenienceStoreItem {
     private String name;
-    private String position;
-    private int hasSkinCount;
+    private String category;
+    private int price;
 }
