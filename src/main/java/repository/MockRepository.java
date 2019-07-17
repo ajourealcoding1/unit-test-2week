@@ -10,6 +10,7 @@ public interface MockRepository {
     ConvenienceStoreItem findByName(String name);
 
     ConvenienceStoreItem updateCategoryByName(String name, String category);
+    ConvenienceStoreItem updatePriceByName(String name, int price);
 
     void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem);
 }
