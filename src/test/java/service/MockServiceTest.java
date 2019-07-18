@@ -30,6 +30,16 @@ public class MockServiceTest {
     // ******************************************
 
     @Test
+    public void findallTest(){
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        mockRepository.findAll();
+
+    }
+
+
+
+
+    @Test
     public void 상품이름을_가져오면_무조건_카이사를_리턴한다() {
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
         convenienceStoreItem.setCategory("정글");
