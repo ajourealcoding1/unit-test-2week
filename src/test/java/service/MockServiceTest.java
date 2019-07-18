@@ -36,7 +36,13 @@ public class MockServiceTest {
 
     }
 
-
+    @Test
+    public void findByNameTest(){
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        convenienceStoreItem.setName("사이다");
+        mockRepository.findByName("사이다");
+        //작성중
+    }
 
 
     @Test
