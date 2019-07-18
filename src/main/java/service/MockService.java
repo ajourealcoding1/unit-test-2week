@@ -35,10 +35,12 @@ public class MockService {
         return convenienceStoreItem;
     }
 
-    //한꺼번에 이름,카테고리,가격 다 입력하기
+    //새로운 상품을 등록할때, 한꺼번에 이름,카테고리,가격 다 입력하기
     public void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem){
-        ConvenienceStoreItem addConvenienceStoreItem = new ConvenienceStoreItem(convenienceStoreItem.getName(), convenienceStoreItem.getCategory(), convenienceStoreItem.getPrice());
-        mockRepository.addConvenienceStoreItem(addConvenienceStoreItem);
+        ConvenienceStoreItem addConvenienceStoreItem
+                = new ConvenienceStoreItem(convenienceStoreItem.getName(), convenienceStoreItem.getCategory(), convenienceStoreItem.getPrice());
         return;
     }
+
+
 }

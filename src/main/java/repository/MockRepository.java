@@ -19,7 +19,7 @@ public class MockRepository {
         }
         return null;
     }
-
+/*
     public ConvenienceStoreItem updateCategoryByName(String name, String category){
 
         return null;
@@ -30,4 +30,6 @@ public class MockRepository {
     }
 
     public void addConvenienceStoreItem(ConvenienceStoreItem convenienceStoreItem){}
+
+ */
 }
