@@ -30,18 +30,10 @@ public class MockServiceTest {
     // ******************************************
 
     @Test
-    public void findallTest(){
+    public void findAllTest(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        mockRepository.findAll();
+        assertThat(mockRepository.findAll().size(), is(0));
 
-    }
-
-    @Test
-    public void findByNameTest(){
-        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        convenienceStoreItem.setName("사이다");
-        mockRepository.findByName("사이다");
-        //작성중
     }
 
     //1500원 사이다와 1500원 포카칩의 가격을 더한 값이 3000원이 맞는지 테스트
