@@ -44,6 +44,16 @@ public class MockServiceTest {
         //작성중
     }
 
+    //1500원 사이다와 1500원 포카칩의 가격을 더한 값이 3000원이 맞는지 테스트
+    @Test
+    public void 사이다와_포카칩_가격을_더하면_3000인지_테스트(){
+        when(mockService.findByName("포카칩")).thenReturn(new ConvenienceStoreItem("포카칩", "과자", 1500));
+        when(mockService.findByName("사이다")).thenReturn(new ConvenienceStoreItem("사이다", "음료", 1500));
+
+       int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
+        assertThat(totalPrice,is(3000));
+    }
+
 
     @Test
     public void 상품이름을_가져오면_무조건_카이사를_리턴한다() {
