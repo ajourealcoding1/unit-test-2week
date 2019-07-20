@@ -189,5 +189,26 @@ public class MockServiceTest {
 
     }
 
+    @Test
+    public void 상품을_검색하면_상품객체를_리턴하고_2번이상_호출되었는지_Test() {
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("신라면", "컵라면", 1500));
+        mockService.findByName("신라면");
+        mockService.findByName("진라면");
+        verify(mockRepository, atLeast(2)).findByName(anyString());
+    }
+
+    @Test
+    public void 어느물품의_가격이_오를때_제대로_올랐는지_Test() {
+        when(mockService.findByName("짜파게티")).thenReturn(new ConvenienceStoreItem("짜파게티", "라면", 1000));
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        //System.out.println(mockService.Convenience_price_return("짜파게티"));
+
+        mockService.updatePriceByName("짜파게티", 1300);
+
+        //System.out.println(mockService.findByName("짜파게티").getPrice());
+        assertThat(mockService.findByName("짜파게티").getPrice(), is(1300));
+    }
+
 
 }
