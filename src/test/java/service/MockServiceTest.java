@@ -44,6 +44,25 @@ public class MockServiceTest {
         //작성중
     }
 
+    //1500원 사이다와 1500원 포카칩의 가격을 더한 값이 3000원이 맞는지 테스트
+    @Test
+    public void 사이다와_포카칩_가격을_더하면_3000인지_테스트(){
+        when(mockService.findByName("포카칩")).thenReturn(new ConvenienceStoreItem("포카칩", "과자", 1500));
+        when(mockService.findByName("사이다")).thenReturn(new ConvenienceStoreItem("사이다", "음료", 1500));
+
+       int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
+        assertThat(totalPrice,is(3000));
+    }
+
+    // 비타오백의 카테고리가 음료였는데 젤리로 변경되는지 테스트
+    @Test
+    public void 비타오백이_음료였다가_젤리로_변경되는지_테스트(){
+        when(mockService.findByName("비타오백")).thenReturn(new ConvenienceStoreItem("비타오백", "음료", 1000));
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        convenienceStoreItem = mockService.findByName("비타오백");
+        mockService.updateCategoryByName("비타오백","젤리");
+        assertThat(convenienceStoreItem.getCategory(),is("젤리"));
+    }
 
     @Test
     public void 상품이름을_가져오면_무조건_카이사를_리턴한다() {
