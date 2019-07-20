@@ -107,40 +107,34 @@ public class MockServiceTest {
         verify(convenienceStoreItems, atLeastOnce()).size();
     }
 
-
-    // 4-1. ConveniencestoreItem 객체에서 상품이름을 가져오는 로직이 2번 이상 실행되면 Pass 하는 로직을 작성하세요.
     @Test
-    public void 두번이상Test(){
+    public void 객체에서getName두번이상하는지Test(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
         convenienceStoreItem.getName();
         convenienceStoreItem.getName();
         verify(convenienceStoreItem, atLeast(2)).getName();
     }
 
-    // 4-2. ConveniencestoreItem 객체에서 상품이름을 가져오는 로직이 최대 3번 이하 실행되면 Pass 하는 로직을 작성하세요.
     @Test
-    public void 세번이하Test(){
+    public void 객체에서getName세번이하하는지Test(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
         convenienceStoreItem.getName();
         convenienceStoreItem.getName();
         verify(convenienceStoreItem, atMost(3)).getName();
     }
 
-    // 4-3. ConveniencestoreItem 객체에서 상품이름을 저장하는 로직이 실행되지 않았으면 Pass 하는 로직을 작성하세요.
     @Test
-    public void 실행안됐을때Test(){
+    public void 객체에서Name설정이안됐을때Test(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-
         verify(convenienceStoreItem, never()).setName(any(String.class));
     }
 
-    // 4-4. ConveniencestoreItem 객체에서 상품을 가져오는 로직이 200ms 시간 이내에 1번 실행되었는 지 검증하는 로직을 작성하세요.
     @Test
-    public void 이백이내Test(){
+    public void 객체에서상품을10분의1초이내에가져오는지Test(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
         convenienceStoreItem.getName();
         convenienceStoreItem.getName();
-        verify(convenienceStoreItem, timeout(200).atLeast(1)).getName();
+        verify(convenienceStoreItem, timeout(100).atLeast(1)).getName();
     }
 
     // ******************************************
