@@ -90,13 +90,12 @@ public class MockServiceTest {
     }
 
 
-    // 3. verify 를 사용하여 '미드' 카테고리를 저장하는 프로세스가 진행되었는지 테스트 하세요.
    @Test
-    public void 미드카테고리저장테스트(){
+    public void 카테고리저장테스트(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        convenienceStoreItem.setCategory("미드");
+        convenienceStoreItem.setCategory("음료수");
         verify(convenienceStoreItem).setCategory(anyString());
-        verify(convenienceStoreItem, times(2)).setCategory(anyString());
+        verify(convenienceStoreItem, times(1)).setCategory(anyString());
     }
 
 
