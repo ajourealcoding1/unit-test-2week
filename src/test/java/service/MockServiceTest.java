@@ -65,32 +65,28 @@ public class MockServiceTest {
     }
 
     @Test
-    public void 상품이름을_가져오면_무조건_카이사를_리턴한다() {
+    public void 상품카테고리를_가져오면_과자를_리턴() {
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        convenienceStoreItem.setCategory("정글");
-        //convenienceStoreItem.getName()을 호출하면 "카이사"를 리턴한다.
-        //when(convenienceStoreItem.getName()).thenReturn("카이사");
-        //assertThat(convenienceStoreItem.getName(), is("카이사"));
-
-        when(convenienceStoreItem.getCategory()).thenReturn("바텀");
-        assertThat(convenienceStoreItem.getCategory(), is("정글"));
+        convenienceStoreItem.setCategory("과자");
+        when(convenienceStoreItem.getCategory()).thenReturn("과자");
+        assertThat(convenienceStoreItem.getCategory(), is("과자"));
     }
 
-    // 1. when, thenReturn을 사용하여 어떠한 상품 이름을 입력해도 베인을 리턴하도록 테스트하세요
+
     @Test
-    public void ShouldReturnBainWhenGetConvenienceStoreItemName(){
+    public void ShouldReturn치토스WhenGetConvenienceStoreItemName(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        when(convenienceStoreItem.getName()).thenReturn("베인");
+        when(convenienceStoreItem.getName()).thenReturn("치토스");
 
-        assertThat(convenienceStoreItem.getName(), is("베인"));
+        assertThat(convenienceStoreItem.getName(), is("치토스"));
     }
 
-    // 2. 상품 이름으로 야스오를 저장하면, doThrow를 사용하여 Exception이 발생하도록 테스트 하세요.
+
    @Test(expected = IllegalArgumentException.class)
-    public void 야스오저장하면두쓰로우익셉션(){
+    public void 스윙칩을저장하면doThrwoException(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        doThrow( new IllegalArgumentException()).when(convenienceStoreItem).setName("야스오");
-        convenienceStoreItem.setName("야스오");
+        doThrow( new IllegalArgumentException()).when(convenienceStoreItem).setName("스윙칩");
+        convenienceStoreItem.setName("스윙칩");
     }
 
 
