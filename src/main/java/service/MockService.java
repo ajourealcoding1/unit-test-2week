@@ -21,6 +21,13 @@ public class MockService {
         return convenienceStoreItem;
     }
 
+    public int addTwoConvenienceStoreItemPricesByName (String name1,String name2){
+        ConvenienceStoreItem convenienceStoreItem1 = mockRepository.findByName(name1);
+        ConvenienceStoreItem convenienceStoreItem2 = mockRepository.findByName(name2);
+
+        return convenienceStoreItem1.getPrice()+convenienceStoreItem2.getPrice();
+    }
+
     public ConvenienceStoreItem updateCategoryByName(String name, String category) {
         ConvenienceStoreItem convenienceStoreItem = findByName(name);
         convenienceStoreItem.setCategory(category);
