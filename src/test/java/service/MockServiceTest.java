@@ -99,12 +99,11 @@ public class MockServiceTest {
         verify(convenienceStoreItem, times(2)).setCategory(anyString());
     }
 
-    // 4. ConveniencestoreItem 객체의 크기를 검증하는 로직이 1번 실행되었는지 테스트 하세요.
+
     @Test
-    public void 객체크기검증Test(){
-        //ConvenienceStoreItem champion = mock(ConvenienceStoreItem.class);
+    public void 객체크기검증을1번하는지Test(){
         List<ConvenienceStoreItem> convenienceStoreItems = mock(List.class);
-        System.out.println(convenienceStoreItems.size()); //실제 호출이 되어야 함
+        System.out.println(convenienceStoreItems.size()); //실제 호출이 되어야 한다.
         verify(convenienceStoreItems, atLeastOnce()).size();
     }
 
