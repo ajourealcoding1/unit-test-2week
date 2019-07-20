@@ -180,26 +180,12 @@ public class MockServiceTest {
     }
 
     // 4. 2개 이상의 가짜 상품 객체를 List로 만들어 리턴하고, 하나씩 해당 객체를 검색한 뒤 검색을 위해 호출한 횟수를 검증하세요.
-
-
-    //가장 많이 사용되는 테스트 중 하나로 BDD 방식에 기반한 테스트 방법 예제
     @Test
-    public void 탐켄치를_호출하면_탐켄치정보를_리턴하고_1번이하로_호출되었는지_검증() {
-
-        /*
-        //given
-        given(mockRepository.findByName("탐켄치")).willReturn(new ConvenienceStoreItem("탐켄치", "서폿", 4));
-        //when
-        ConvenienceStoreItem convenienceStoreItem = mockService.findByName("탐켄치");
-        //then
-        verify(mockRepository, atLeast(1)).findByName(anyString());
-        assertThat(convenienceStoreItem.getName(), is("탐켄치"));
-        */
-        given(mockRepository.findByName("자야")).willReturn(new ConvenienceStoreItem("자야", "서폿", 4));
-        ConvenienceStoreItem convenienceStoreItem = mockService.findByName("자야");
-        convenienceStoreItem = mockService.findByName("자야");
-        verify(mockRepository, times(2)).findByName(anyString());
-        assertThat(convenienceStoreItem.getName(), is("자야"));
+    public void 특정상품을호출하면_그정보를리턴하고_1번이하로호출되었는지Test() {
+        given(mockRepository.findByName("불닭볶음면")).willReturn(new ConvenienceStoreItem("불닭볶음면", "라면", 1300));
+        ConvenienceStoreItem convenienceStoreItem = mockService.findByName("불닭볶음면");
+        verify(mockRepository, times(1)).findByName(anyString());
+        assertThat(convenienceStoreItem.getName(), is("불닭볶음면"));
 
     }
 
