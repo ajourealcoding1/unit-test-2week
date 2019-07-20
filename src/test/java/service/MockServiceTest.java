@@ -54,6 +54,15 @@ public class MockServiceTest {
         assertThat(totalPrice,is(3000));
     }
 
+    // 비타오백의 카테고리가 음료였는데 젤리로 변경되는지 테스트
+    @Test
+    public void 비타오백이_음료였다가_젤리로_변경되는지_테스트(){
+        when(mockService.findByName("비타오백")).thenReturn(new ConvenienceStoreItem("비타오백", "음료", 1000));
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        convenienceStoreItem = mockService.findByName("비타오백");
+        mockService.updateCategoryByName("비타오백","젤리");
+        assertThat(convenienceStoreItem.getCategory(),is("젤리"));
+    }
 
     @Test
     public void 상품이름을_가져오면_무조건_카이사를_리턴한다() {
