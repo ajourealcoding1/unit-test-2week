@@ -137,49 +137,46 @@ public class MockServiceTest {
         verify(convenienceStoreItem, timeout(100).atLeast(1)).getName();
     }
 
-    // ******************************************
-    // injectmock test 연습
-    // ******************************************
 
     @Test
     public void 상품정보들을Mocking하고Service메소드호출테스트() {
 
-        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("조이", "바텀", 2));
+        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("치토스", "과자", 2000));
 
-        String champName = mockService.findByName("조이").getName();
-        assertThat(champName, is("조이"));
+        String champName = mockService.findByName("치토스").getName();
+        assertThat(champName, is("치토스"));
         verify(mockRepository, times(1)).findByName(anyString());
-
     }
 
-    // 1. 리산드라라는 상품 이름으로 검색하면 미드라는 카테고리와 함께 가짜 객체를 리턴받고, 카테고리가 탑이 맞는지를 테스트하세요
     @Test
-    public void 리산드라검색(){
-        when(mockService.findByName("리산드라")).thenReturn(new ConvenienceStoreItem("리산드라", "미드", 2));
-        assertThat(mockService.findByName("리산드라").getCategory(), is("미드"));
-
+    public void 치토스를검색하면_과자카테고리인객체를리턴받고_과자카테고리인지Test(){
+        when(mockService.findByName("치토스")).thenReturn(new ConvenienceStoreItem("치토스", "과자", 2000));
+        assertThat(mockService.findByName("치토스").getCategory(), is("과자"));
     }
 
 
-    // 2. 2개 이상의 상품을 List로 만들어 전체 상품을 가져오는 메소드 호출시 그 갯수가 맞는지 확인하는 테스트 코드를 작성하세요.
     @Test
-    public void 리스트갯수확인Test(){
+    public void 상품리스트를가져와_그갯수가맞는지확인Test(){
         List<ConvenienceStoreItem> convenienceStoreItems = mock(List.class);
         System.out.println(convenienceStoreItems);
         when(convenienceStoreItems.size()).thenReturn(3);
         assertThat(convenienceStoreItems.size(), is(3));
     }
 
-    // 3. 상품을 검색하면 가짜 상품 객체를 리턴하고, mockRepository의 해당 메소드가 1번 호출되었는지를 검증하고, 그 상품의 가격이
-    //    맞는지 확인하는 테스트코드를 작성하세요.
     @Test
-    public void 삼번(){
+    public void 상품을검색하면상품객체를리턴받아_해당method가1번호출되었는지Test(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("리산드라", "미드", 2));
-        mockService.findByName("베인");
+        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("진짬뽕", "컵라면", 1500));
+        mockService.findByName("진짬뽕");
         verify(mockRepository, times(1)).findByName(anyString());
-        assertThat(mockService.findByName("리산드라").getPrice(), is(2));
+    }
 
+    @Test
+    public void 상품을검색하면상품객체를리턴받아_가격이일치하는지Test(){
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        when(mockService.findByName(anyString())).thenReturn(new ConvenienceStoreItem("눈을감자", "과자", 2000));
+        mockService.findByName("눈을감자");
+        assertThat(mockService.findByName("눈을감자").getPrice(), is(2000));
     }
 
     // 4. 2개 이상의 가짜 상품 객체를 List로 만들어 리턴하고, 하나씩 해당 객체를 검색한 뒤 검색을 위해 호출한 횟수를 검증하세요.
