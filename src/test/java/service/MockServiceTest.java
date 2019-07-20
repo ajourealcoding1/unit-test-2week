@@ -98,6 +98,13 @@ public class MockServiceTest {
         verify(convenienceStoreItem, times(1)).setCategory(anyString());
     }
 
+    @Test
+    public void 가격저장테스트(){
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        convenienceStoreItem.setPrice(10000);
+        verify(convenienceStoreItem).setPrice(anyInt());
+        verify(convenienceStoreItem, times(1)).setPrice(anyInt());
+    }
 
     @Test
     public void 객체크기검증을1번하는지Test(){
