@@ -42,7 +42,7 @@ public class MockServiceTest {
         when(mockService.findByName("포카칩")).thenReturn(new ConvenienceStoreItem("포카칩", "과자", 1500));
         when(mockService.findByName("사이다")).thenReturn(new ConvenienceStoreItem("사이다", "음료", 1500));
 
-       int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
+        int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
         assertThat(totalPrice,is(3000));
     }
 
@@ -208,5 +208,15 @@ public class MockServiceTest {
         assertThat(mockService.findByName("짜파게티").getPrice(), is(1300));
     }
 
+    @Test
+    public void 코카콜라를_호출하면_코카콜라정보를_리턴하고_2번이상으로_호출되었는지_검증() {
 
+        given(mockRepository.findByName("코카콜라")).willReturn(new ConvenienceStoreItem("코카콜라","음료",1500));
+        ConvenienceStoreItem convenienceStoreItem1 = mockService.findByName("코카콜라");
+        ConvenienceStoreItem convenienceStoreItem2 = mockService.findByName("코카콜라");
+        ConvenienceStoreItem convenienceStoreItem3 = mockService.findByName("코카콜라");
+
+        verify(mockRepository,atLeast(2)).findByName(anyString());
+        assertThat(convenienceStoreItem1.getName(),is("코카콜라"));
+    }
 }
