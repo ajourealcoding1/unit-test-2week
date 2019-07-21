@@ -49,5 +49,11 @@ public class MockService {
         return;
     }
 
+    public int getAggregationProfitInCategory(List<ConvenienceStoreItem> convenienceStoreItemList, String CategoryName){
+        return convenienceStoreItemList.stream()
+                .filter(convenienceStoreItem -> convenienceStoreItem.getCategory().equals(CategoryName))
+                .mapToInt(convenienceStoreItem -> convenienceStoreItem.getPrice())
+                .sum();
+    }
 
 }
