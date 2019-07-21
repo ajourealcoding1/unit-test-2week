@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.MockRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -219,4 +220,20 @@ public class MockServiceTest {
         verify(mockRepository,atLeast(2)).findByName(anyString());
         assertThat(convenienceStoreItem1.getName(),is("코카콜라"));
     }
+
+    @Test
+    public void 카테고리가음료인_상품들의가격총합을_계산하는_테스트 () {
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        List<ConvenienceStoreItem> convenienceStoreItems = new ArrayList<>();
+        convenienceStoreItems.add(new ConvenienceStoreItem("코카콜라","음료",1500));
+        convenienceStoreItems.add(new ConvenienceStoreItem("펩시","음료",1300));
+        convenienceStoreItems.add(new ConvenienceStoreItem("치토스","과자",1100));
+        convenienceStoreItems.add(new ConvenienceStoreItem("쿠우","음료",1000));
+        convenienceStoreItems.add(new ConvenienceStoreItem("빠삐코","아이스크림",500));
+
+        int result = mockService.getAggregationProfitInCategory(convenienceStoreItems,"음료");
+
+        assertThat(result,is(3800));
+    }
+
 }
