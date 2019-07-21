@@ -30,18 +30,10 @@ public class MockServiceTest {
     // ******************************************
 
     @Test
-    public void findallTest(){
+    public void findAllTest(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        mockRepository.findAll();
+        assertThat(mockRepository.findAll().size(), is(0));
 
-    }
-
-    @Test
-    public void findByNameTest(){
-        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        convenienceStoreItem.setName("사이다");
-        mockRepository.findByName("사이다");
-        //작성중
     }
 
     //1500원 사이다와 1500원 포카칩의 가격을 더한 값이 3000원이 맞는지 테스트
@@ -90,15 +82,21 @@ public class MockServiceTest {
     }
 
 
-    // 3. verify 를 사용하여 '미드' 카테고리를 저장하는 프로세스가 진행되었는지 테스트 하세요.
    @Test
-    public void 미드카테고리저장테스트(){
+    public void 카테고리저장테스트(){
         ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
-        convenienceStoreItem.setCategory("미드");
+        convenienceStoreItem.setCategory("음료수");
         verify(convenienceStoreItem).setCategory(anyString());
-        verify(convenienceStoreItem, times(2)).setCategory(anyString());
+        verify(convenienceStoreItem, times(1)).setCategory(anyString());
     }
 
+    @Test
+    public void 가격저장테스트(){
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        convenienceStoreItem.setPrice(10000);
+        verify(convenienceStoreItem).setPrice(anyInt());
+        verify(convenienceStoreItem, times(1)).setPrice(anyInt());
+    }
 
     @Test
     public void 객체크기검증을1번하는지Test(){
