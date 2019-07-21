@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.MockRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,7 +43,7 @@ public class MockServiceTest {
         when(mockService.findByName("포카칩")).thenReturn(new ConvenienceStoreItem("포카칩", "과자", 1500));
         when(mockService.findByName("사이다")).thenReturn(new ConvenienceStoreItem("사이다", "음료", 1500));
 
-       int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
+        int totalPrice = mockService.addTwoConvenienceStoreItemPricesByName("사이다","포카칩");
         assertThat(totalPrice,is(3000));
     }
 
@@ -208,5 +209,31 @@ public class MockServiceTest {
         assertThat(mockService.findByName("짜파게티").getPrice(), is(1300));
     }
 
+    @Test
+    public void 코카콜라를_호출하면_코카콜라정보를_리턴하고_2번이상으로_호출되었는지_검증() {
+
+        given(mockRepository.findByName("코카콜라")).willReturn(new ConvenienceStoreItem("코카콜라","음료",1500));
+        ConvenienceStoreItem convenienceStoreItem1 = mockService.findByName("코카콜라");
+        ConvenienceStoreItem convenienceStoreItem2 = mockService.findByName("코카콜라");
+        ConvenienceStoreItem convenienceStoreItem3 = mockService.findByName("코카콜라");
+
+        verify(mockRepository,atLeast(2)).findByName(anyString());
+        assertThat(convenienceStoreItem1.getName(),is("코카콜라"));
+    }
+
+    @Test
+    public void 카테고리가음료인_상품들의가격총합을_계산하는_테스트 () {
+        ConvenienceStoreItem convenienceStoreItem = mock(ConvenienceStoreItem.class);
+        List<ConvenienceStoreItem> convenienceStoreItems = new ArrayList<>();
+        convenienceStoreItems.add(new ConvenienceStoreItem("코카콜라","음료",1500));
+        convenienceStoreItems.add(new ConvenienceStoreItem("펩시","음료",1300));
+        convenienceStoreItems.add(new ConvenienceStoreItem("치토스","과자",1100));
+        convenienceStoreItems.add(new ConvenienceStoreItem("쿠우","음료",1000));
+        convenienceStoreItems.add(new ConvenienceStoreItem("빠삐코","아이스크림",500));
+
+        int result = mockService.getAggregationProfitInCategory(convenienceStoreItems,"음료");
+
+        assertThat(result,is(3800));
+    }
 
 }
